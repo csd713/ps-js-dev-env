@@ -4,16 +4,19 @@
   "description": "JavaScript Development Environment setup",
   "main": "index.js",
   "scripts": {
-	"prestart": "babel-node buildScripts/startMessage.js",
-	"start": "npm-run-all --parallel security-check open:src lint:watch test:watch",
-	"open:src":"babel-node buildScripts/srcServer.js",
-	"lint": "esw webpack.config.* src buildScripts --color",
-	"lint:watch": "npm run lint -- --watch",
-	"security-check": "nsp check",
-	"localtunnel": "lt --port 3000",
-	"share": "npm-run-all --parallel open:src localtunnel",
-	"test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
-	"test:watch": "npm run test -- --watch"
+    "prestart": "babel-node buildScripts/startMessage.js",
+    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch start-mockapi",
+    "open:src": "babel-node buildScripts/srcServer.js",
+    "lint": "esw webpack.config.* src buildScripts --color",
+    "lint:watch": "npm run lint -- --watch",
+    "security-check": "nsp check",
+    "localtunnel": "lt --port 3000",
+    "share": "npm-run-all --parallel open:src localtunnel",
+    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
+	"test:watch": "npm run test -- --watch",
+	"generate-mock-data": "babel-node buildScripts/generateMockData",
+	"prestart-mockapi": "npm run generate-mock-data",
+	"start-mockapi": "json-server --watch src/api/db.json --port 3001"
   },
   "repository": {
     "type": "git",
@@ -24,7 +27,9 @@
   "bugs": {
     "url": "https://github.com/csd713/ps-js-dev-env/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "whatwg-fetch": "^2.0.3"
+  },
   "devDependencies": {
     "babel-cli": "6.16.0",
     "babel-core": "6.17.0",
