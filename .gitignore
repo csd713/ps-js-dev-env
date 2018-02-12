@@ -58,4 +58,7 @@ typings/
 .env
 
 # mock database file
-src/api/db.json
+db.json
+
+# distribution files
+dist
