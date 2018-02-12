@@ -14,6 +14,9 @@ app.get('/', function(req,res){
 	res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
+/*
+//Hitting API from heroku instead of this
+
 app.get('/users', function(req, res) {
 // Hard coding for simplicity. Pretend this hits a real database
 	res.json([
@@ -22,7 +25,7 @@ app.get('/users', function(req, res) {
 		{"id": 3,"firstName":"Rakshith","lastName":"Boss","email":"boss@hotmail.com"}
 	]);
 });
-
+*/
 app.listen(port, function(err){
 	if(err){
 		console.log(err); // eslint-disable-line no-console
